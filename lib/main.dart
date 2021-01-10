@@ -1,8 +1,16 @@
+
 import 'package:flutter/material.dart';
 
 void main() => runApp(MaterialApp(home: MyApp()));
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+
+  @override
+  State<StatefulWidget> createState() => _MyApp();
+
+}
+
+class _MyApp extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     Widget tennantsText = Container(
@@ -25,11 +33,12 @@ class MyApp extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'Commit to this',
+                  'Choose Tenant',
                   style: TextStyle(
                     color: Colors.grey[500],
                   ),
                 ),
+                MyStatefulWidget(),
               ],
             ),
           ),
@@ -81,6 +90,7 @@ class MyApp extends StatelessWidget {
           ),
           /*3*/
           FloatingActionButton(
+            onPressed: null,
             heroTag: null,
             child: Icon(
               Icons.add,
@@ -120,6 +130,7 @@ class MyApp extends StatelessWidget {
           ),
           /*3*/
           FloatingActionButton(
+            onPressed: null,
             heroTag: 'btn3',
             child: Icon(
               Icons.add,
@@ -161,6 +172,7 @@ class MyApp extends StatelessWidget {
           ),
           /*3*/
           FloatingActionButton(
+            onPressed: null,
             heroTag: 'btn4',
             child: Icon(
               Icons.exit_to_app,
@@ -187,7 +199,7 @@ class MyApp extends StatelessWidget {
     );
 
     return MaterialApp(
-      title: 'Welcome to Flutter',
+      title: 'Tenants',
       home: Container(
           child: Scaffold(
             appBar: AppBar(
@@ -212,19 +224,85 @@ class MyApp extends StatelessWidget {
 class SecondRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Second Route"),
+
+    Widget myText() {
+      return Padding(
+        padding: EdgeInsets.all(28),
+        child: Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+      );
+    }
+
+    return MaterialApp(
+      title: 'Tenants',
+      home: Container(
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text("Tenant"),
+            leading: FloatingActionButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Icon(
+                IconData(61563, fontFamily: 'MaterialIcons'),
+                color: Colors.white,
+              ),
+            ),
+          ),
+          body: Column(
+            children: <Widget> [
+              TextButton(
+
+                child: Text("Go back"),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              myText(),
+              myText(),
+              myText(),
+            ],
+          )
+        )
+      )
+    );
+  }
+}
+
+class MyStatefulWidget extends StatefulWidget {
+  MyStatefulWidget({Key key}) : super(key: key);
+
+  @override
+  _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
+}
+
+/// This is the private State class that goes with MyStatefulWidget.
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  String dropdownValue = 'One';
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      value: dropdownValue,
+      icon: Icon(Icons.arrow_downward),
+      iconSize: 24,
+      elevation: 16,
+      style: TextStyle(color: Colors.deepPurple),
+      underline: Container(
+        height: 2,
+        color: Colors.deepPurpleAccent,
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text('Go back!'),
-          
-        ),
-      ),
+      onChanged: (String newValue) {
+        setState(() {
+          dropdownValue = newValue;
+        });
+      },
+      items: <String>['One', 'Two', 'Three', 'Four']
+          .map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
     );
   }
 }
