@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
           ),
           /*3*/
           FloatingActionButton(
-            heroTag: 'btn1',
+            heroTag: null,
             onPressed: () {
               Navigator.push(
                 context,
@@ -120,7 +120,7 @@ class MyApp extends StatelessWidget {
           ),
           /*3*/
           FloatingActionButton(
-            heroTag: 'btn3',
+            heroTag: null,
             child: Icon(
               Icons.add,
               color: Colors.white,
@@ -161,7 +161,7 @@ class MyApp extends StatelessWidget {
           ),
           /*3*/
           FloatingActionButton(
-            heroTag: 'btn4',
+            heroTag: null,
             child: Icon(
               Icons.exit_to_app,
               color: Colors.white,
@@ -212,8 +212,8 @@ class MyApp extends StatelessWidget {
 class SecondRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    return MaterialApp(
+      home: AppBar(
         title: Text("Second Route"),
       ),
       body: Center(
@@ -222,7 +222,6 @@ class SecondRoute extends StatelessWidget {
             Navigator.pop(context);
           },
           child: Text('Go back!'),
-          
         ),
       ),
     );
