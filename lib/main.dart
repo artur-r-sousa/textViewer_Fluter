@@ -203,14 +203,13 @@ class _MyApp extends State<MyApp> {
       home: Container(
           child: Scaffold(
             appBar: AppBar(
-              title: Text('Another Version...'),
+              title: Text('Text Viewer'),
             ),
             body: Column(
               children: [
                 tenantsText,
                 tenantsText1,
                 tenantsText2,
-                tenantsText1,
                 Expanded(child: tenantsText3,),
                 footerForMain,
               ],
@@ -266,7 +265,9 @@ class SecondRoute extends StatelessWidget {
     Widget myText(String someText) {
       return Padding(
         padding: EdgeInsets.all(28),
-        child: Text(someText),
+        child: Text(someText, style: new TextStyle(
+          fontSize: 20
+        ),),
       );
     }
 
@@ -286,7 +287,7 @@ class SecondRoute extends StatelessWidget {
               ),
             ),
           ),
-          body: Column(
+          body: ListView(
             children: [
               TextButton(
 
