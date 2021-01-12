@@ -13,7 +13,7 @@ class MyApp extends StatefulWidget {
 class _MyApp extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    Widget tennantsText = Container(
+    Widget tenantsText = Container(
       padding: const EdgeInsets.all(32),
       child: Row(
         children: [
@@ -60,7 +60,7 @@ class _MyApp extends State<MyApp> {
         ],
       ),
     );
-    Widget tennantsText1 = Container(
+    Widget tenantsText1 = Container(
       padding: const EdgeInsets.all(32),
       child: Row(
         children: [
@@ -100,7 +100,7 @@ class _MyApp extends State<MyApp> {
         ],
       ),
     );
-    Widget tennantsText2 = Container(
+    Widget tenantsText2 = Container(
       padding: const EdgeInsets.all(32),
       child: Row(
         children: [
@@ -140,7 +140,7 @@ class _MyApp extends State<MyApp> {
         ],
       ),
     );
-    Widget tennantsText3 = Container(
+    Widget tenantsText3 = Container(
 
       padding: const EdgeInsets.all(32),
 
@@ -207,11 +207,11 @@ class _MyApp extends State<MyApp> {
             ),
             body: Column(
               children: [
-                tennantsText,
-                tennantsText1,
-                tennantsText2,
-                tennantsText1,
-                Expanded(child: tennantsText3,),
+                tenantsText,
+                tenantsText1,
+                tenantsText2,
+                tenantsText1,
+                Expanded(child: tenantsText3,),
                 footerForMain,
               ],
             ),
@@ -222,13 +222,51 @@ class _MyApp extends State<MyApp> {
 }
 
 class SecondRoute extends StatelessWidget {
+
+  final String exampleText = "Lorem Ipsum is simply dummy text of the printing "
+      "and typesetting industry. Lorem Ipsum has been the industry's standard "
+      "dummy text ever since the 1500s, when an unknown printer took a galley of"
+      " type and scrambled it to make a type specimen book. It has survived not "
+      "only five centuries, but also the leap into electronic typesetting, "
+      "remaining essentially unchanged. It was popularised in the 1960s with the"
+      " release of Letraset sheets containing Lorem Ipsum passages, and more "
+      "recently with desktop publishing software like Aldus PageMaker including "
+      "versions of Lorem Ipsum.";
+
+  final String text2 = "NOITE OUTRA VEZ. A Pousada Marco do Percurso estava em silêncio, e era um silêncio em três"
+  "partes. A parte mais óbvia era uma quietude oca e repleta de ecos, feita das coisas que faltavam. Se"
+  "houvesse vento, ele sussurraria por entre as árvores, faria a pousada ranger em suas juntas e"
+  "sopraria o silêncio estrada afora, como folhas de outono arrastadas. Se houvesse uma multidão,"
+ "ou pelo menos um punhado de homens na pousada, eles encheriam o silêncio de conversa e riso,"
+  "do burburinho e do clamor esperados de uma casa em que se bebe nas horas sombrias da noite."
+  "Se houvesse música... Mas não, é claro que não havia música. Na verdade, não havia nenhuma"
+  "dessas coisas e por isso o silêncio persistia."
+ " Dentro da pousada, uma dupla de homens se encolhia num canto do bar. Os dois bebiam"
+ " com serena determinação, evitando discussões sérias ou notícias inquietantes. Com isso,"
+      "acrescentavam um silêncio pequeno e soturno ao maior e mais oco. Ele formava uma espécie de"
+  "amálgama, um contraponto."
+  "O terceiro silêncio não era fácil de notar. Se você passasse uma hora escutando, talvez"
+  "começasse a senti-lo no assoalho de madeira sob os pés e nos barris toscos e lascados atrás do"
+  "bar. Ele estava no peso da lareira de pedras negras, que conservava o calor de um fogo há muito"
+  "extinto. Estava no lento vaivém de uma toalha de linho branco esfregada nos veios da madeira do"
+  "bar. E estava nas mãos do homem ali postado, que polia um pedaço de mogno já reluzente à luz"
+  "do lampião."
+  "O homem tinha cabelos ruivos de verdade, vermelhos como a chama. Seus olhos eram"
+  "escuros e distantes, e ele se movia com a segurança sutil de quem conhece muitas coisas."
+  "Dele era a Pousada Marco do Percurso, como dele era também o terceiro silêncio. Era"
+  "apropriado que assim fosse, pois esse era o maior silêncio dos três, englobando os outros dentro"
+  "de si. Era profundo e amplo como o fim do outono. Pesado como um pedregulho alisado pelo"
+  "rio. Era o som paciente ― som de flor colhida ― do homem que espera a morte.";
+
+  final String text3 = 'example Text 3';
+  final String text4 = 'example Text 4';
   @override
   Widget build(BuildContext context) {
 
-    Widget myText() {
+    Widget myText(String someText) {
       return Padding(
         padding: EdgeInsets.all(28),
-        child: Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+        child: Text(someText),
       );
     }
 
@@ -249,7 +287,7 @@ class SecondRoute extends StatelessWidget {
             ),
           ),
           body: Column(
-            children: <Widget> [
+            children: [
               TextButton(
 
                 child: Text("Go back"),
@@ -257,9 +295,19 @@ class SecondRoute extends StatelessWidget {
                   Navigator.pop(context);
                 },
               ),
-              myText(),
-              myText(),
-              myText(),
+              myText((() {
+                if(_MyStatefulWidgetState.holder == 'One') {
+                  return exampleText;
+                } else if (_MyStatefulWidgetState.holder == 'Two') {
+                  return text2;
+                }
+                else if (_MyStatefulWidgetState.holder == 'Three') {
+                  return text3;
+                }else if (_MyStatefulWidgetState.holder == 'Four') {
+                  return text4;
+                }
+                return "anything goes";
+              })())
             ],
           )
         )
@@ -278,6 +326,13 @@ class MyStatefulWidget extends StatefulWidget {
 /// This is the private State class that goes with MyStatefulWidget.
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   String dropdownValue = 'One';
+  static String holder = '';
+
+  void getDropDownItem(){
+    setState(() {
+      holder = dropdownValue ;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -294,6 +349,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       onChanged: (String newValue) {
         setState(() {
           dropdownValue = newValue;
+          getDropDownItem();
         });
       },
       items: <String>['One', 'Two', 'Three', 'Four']
